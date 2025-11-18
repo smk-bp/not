@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPMB - SMK Bina Putera Bogor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.jpeg" alt="Logo SMK Bina Putera Bogor">
+                </div>
+                <div class="logo-text">
+                    <div class="school-name">SMK BINA PUTERA BOGOR</div>
+                    <div class="foundation">YAYASAN PENDIDIKAN KATULAMPA</div>
+                </div>
+            </div>
+            <h1>SELEKSI PENERIMAAN MURID BARU</h1>
+            <p class="subtitle">Tahun Ajaran 2026/2027</p>
+        </header>
+        
+        <!-- Login Page -->
+        <div id="loginPage">
+            <div class="login-container">
+                <h2 class="login-title">Login SPMB</h2>
+                <div class="login-options">
+                    <div class="login-option active" data-role="user">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Calon Murid</h3>
+                        <p>Isi formulir pendaftaran</p>
+                    </div>
+                    <div class="login-option" data-role="admin">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Admin</h3>
+                        <p>Kelola data pendaftaran</p>
+                    </div>
+                </div>
+                
+                <div class="login-form active" id="userLoginForm">
+                    <div class="form-group">
+                        <label for="userName"><i class="fas fa-user"></i> Nama Lengkap</label>
+                        <input type="text" id="userName" placeholder="Masukkan nama lengkap">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="userEmail" placeholder="Masukkan email">
+                    </div>
+                    <button class="btn btn-primary" id="userLoginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Masuk sebagai Calon Murid
+                    </button>
+                </div>
+                
+                <div class="login-form" id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminUsername"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="adminUsername" placeholder="Masukkan username">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="adminPassword" placeholder="Masukkan password">
+                    </div>
+                    <button class="btn btn-primary" id="adminLoginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Masuk sebagai Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- User Page (Form Pendaftaran) -->
+        <div id="userPage">
+            <h2 class="page-title"><i class="fas fa-user-graduate"></i> Formulir Pendaftaran</h2>
+            
+            <form id="spmbForm">
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-user"></i> Data Pribadi</h3>
+                    
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="laki" name="jenis_kelamin" value="Laki-laki" required>
+                                <label for="laki">Laki-laki</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan">
+                                <label for="perempuan">Perempuan</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap</label>
+                        <textarea id="alamat" name="alamat" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="no_hp">Nomor HP/WhatsApp</label>
+                        <input type="tel" id="no_hp" name="no_hp" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-school"></i> Data Pendidikan</h3>
+                    
+                    <div class="form-group">
+                        <label for="asal_sekolah">Asal Sekolah</label>
+                        <input type="text" id="asal_sekolah" name="asal_sekolah" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tahun_lulus">Tahun Lulus</label>
+                        <input type="number" id="tahun_lulus" name="tahun_lulus" min="2024" max="2026" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jurusan_dipilih">Jurusan yang Dipilih</label>
+                        <select id="jurusan_dipilih" name="jurusan_dipilih" required>
+                            <option value="">Pilih Jurusan</option>
+                            <option value="Pemasaran">Pemasaran</option>
+                            <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                            <option value="Teknik Sepeda Motor">Teknik Sepeda Motor</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-users"></i> Data Orang Tua/Wali</h3>
+                    
+                    <div class="form-group">
+                        <label for="nama_ortu">Nama Orang Tua/Wali</label>
+                        <input type="text" id="nama_ortu" name="nama_ortu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pekerjaan_ortu">Pekerjaan Orang Tua/Wali</label>
+                        <input type="text" id="pekerjaan_ortu" name="pekerjaan_ortu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="no_hp_ortu">Nomor HP Orang Tua/Wali</label>
+                        <input type="tel" id="no_hp_ortu" name="no_hp_ortu" required>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Tambahan</h3>
+                    
+                    <div class="form-group">
+                        <label for="alasan_masuk">Alasan Memilih SMK Bina Putera Bogor</label>
+                        <textarea id="alasan_masuk" name="alasan_masuk" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prestasi">Prestasi yang Pernah Diraih (jika ada)</label>
+                        <textarea id="prestasi" name="prestasi" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="setuju" name="setuju" required>
+                        <label for="setuju">Saya menyatakan bahwa data yang diisi adalah benar dan siap mengikuti proses seleksi</label>
+                    </div>
+                </div>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <p>Mengirim data...</p>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="submitButton">
+                    <i class="fas fa-paper-plane"></i> Daftar Sekarang
+                </button>
+                
+                <div id="successMessage" class="success-message">
+                    <h3><i class="fas fa-check-circle"></i> SUKSES!</h3>
+                    <p>Pendaftaran Anda berhasil. Data telah tersimpan di database kami.</p>
+                    <p>Kami akan menghubungi Anda melalui WhatsApp untuk informasi selanjutnya.</p>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Admin Page -->
+        <div id="adminPage">
+            <h2 class="page-title"><i class="fas fa-user-shield"></i> Dashboard Admin</h2>
+            
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number" id="totalPendaftar">0</div>
+                    <div class="stat-label">Total Pendaftar</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-book"></i>
+                    <div class="stat-number" id="totalJurusan">3</div>
+                    <div class="stat-label">Jurusan Tersedia</div>
+                </div>
+                <div class="stat-card">       
+                    <i class="fas fa-chart-line"></i>
+                    <div class="stat-number" id="pendaftarHariIni">0</div>
+                    <div class="stat-label">Pendaftar Hari Ini</div>
+                </div>
+            </div>
+            
+            <div class="admin-controls">
+                <button class="btn btn-success" id="refreshDataBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh Data
+                </button>
+                <button class="btn btn-info" id="downloadSheetPDFBtn">
+                    <i class="fas fa-download"></i> Download Rekap pdf
+                </button>
+            </div>
+            
+            <div class="data-table-container">
+                <div class="table-header">
+                    <div class="table-title">Data Pendaftar</div>
+                    <div id="dataCount">Menampilkan 0 data</div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table" id="pendaftarTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Asal Sekolah</th>
+                                <th>Jurusan</th>
+                                <th>No. HP</th>
+                                <th>Tanggal Daftar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendaftarTableBody">
+                            <!-- Data akan diisi oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>SMK Bina Putera Bogor &copy; 2025</p>
+            <p>Jl Pengairan Katulampa, Kel Katulampa Kec Bogor Timur </p>
+            <p>email :smk.binaputera@yahoo.com Telp (0251) 8359928 </p>
+            <p>Kode Pos 16144</p>
+        </footer>
+    </div>
+
+    <script src="web.js"></script>
+</body>
+</html>
